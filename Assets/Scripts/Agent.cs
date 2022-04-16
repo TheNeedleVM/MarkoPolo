@@ -8,7 +8,7 @@ public class Agent : MonoBehaviour
     public Material[] materials;
     public Vector3 endMove;
     public int moveDirection, hp;
-    public bool isMoving, isHit;
+    public bool isMoving, isHit, isSelected;
     public float hitTimer;
     void Start()
     {
@@ -32,11 +32,18 @@ public class Agent : MonoBehaviour
             if(hitTimer > 0.1f)
             {
                 isHit = false;
-            }            
+            }
         }
         else
         {
-            gameObject.GetComponent<Renderer>().material = materials[0];
+            if(!isSelected)
+            {
+                gameObject.GetComponent<Renderer>().material = materials[0];
+            }
+            else
+            {
+                gameObject.GetComponent<Renderer>().material = materials[2];
+            }
             hitTimer = 0f;
         }
     }

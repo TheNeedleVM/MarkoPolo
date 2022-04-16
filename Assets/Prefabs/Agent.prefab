@@ -130,7 +130,10 @@ MonoBehaviour:
   materials:
   - {fileID: 2100000, guid: 71482980a543b2e4abac34bcefce4dc7, type: 2}
   - {fileID: 2100000, guid: 743f1949f6ed03744a9f729cd781d6a1, type: 2}
+  - {fileID: 2100000, guid: dc437843d48270d41afd73095ff98b9d, type: 2}
   endMove: {x: 0, y: 0, z: 0}
   moveDirection: 0
   hp: 0
   isMoving: 1
+  isHit: 0
+  hitTimer: 0
