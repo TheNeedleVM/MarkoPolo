@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectingControl : MonoBehaviour
 {
     private RaycastHit hit;
     public LayerMask layermask;
-    public GameObject selectedAgent;
+    public GameObject selectedAgent, agentUi;
     public float rayLength;
+    public Text agentName, hpText, surviveText;
     void Start()
     {
         
@@ -16,6 +18,17 @@ public class SelectingControl : MonoBehaviour
 
     void Update()
     {
+        if(selectedAgent != null)
+        {
+            agentName.text = selectedAgent.name;
+            hpText.text = "HP: " + selectedAgent.GetComponent<Agent>().hp.ToString();
+            surviveText.text = "Survived for: " + selectedAgent.GetComponent<Agent>().surviveTimer.ToString("0.0" ) + "sec";
+        }
+        else
+        {
+            agentUi.SetActive(false);
+        }
+        
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(Physics.Raycast(ray, out hit, rayLength, layermask))
         {
@@ -28,6 +41,7 @@ public class SelectingControl : MonoBehaviour
                     {
                         selectedAgent = hit.collider.gameObject;
                         hit.collider.GetComponent<Agent>().isSelected = true;
+                        agentUi.SetActive(true);                        
                     }
                 }
                 else
@@ -42,6 +56,7 @@ public class SelectingControl : MonoBehaviour
                     {
                         selectedAgent.GetComponent<Agent>().isSelected = false;
                         selectedAgent = null;
+                        agentUi.SetActive(false);
                     }                    
                 }
             }            

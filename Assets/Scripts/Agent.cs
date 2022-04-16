@@ -9,7 +9,7 @@ public class Agent : MonoBehaviour
     public Vector3 endMove;
     public int moveDirection, hp;
     public bool isMoving, isHit, isSelected;
-    public float hitTimer;
+    public float hitTimer, surviveTimer;
     void Start()
     {
         endMove = transform.position;
@@ -20,16 +20,17 @@ public class Agent : MonoBehaviour
 
     void Update()
     {
+        surviveTimer = surviveTimer + Time.deltaTime;
         if(hp == 0)
         {
             spawnControl.GetComponent<SpawnControl>().agentAmount = spawnControl.GetComponent<SpawnControl>().agentAmount - 1;
-            Destroy(gameObject, 0.1f);
+            Destroy(gameObject, 0.15f);
         }
         if(isHit)
         {
             gameObject.GetComponent<Renderer>().material = materials[1];
             hitTimer = hitTimer + Time.deltaTime;
-            if(hitTimer > 0.1f)
+            if(hitTimer > 0.15f)
             {
                 isHit = false;
             }

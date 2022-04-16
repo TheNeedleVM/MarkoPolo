@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SpawnControl : MonoBehaviour
 {
-    public GameObject agentPrefab;
+    public GameObject agentPrefab, newAgent;
     public GameObject[] tiles;
-    public int spawnTimeRoll, agentAmount, spawnPosRoll;
+    public int spawnTimeRoll, agentAmount, spawnPosRoll, agentNumber;
     public float spawnTimer;
 
     void Start()
@@ -18,7 +18,7 @@ public class SpawnControl : MonoBehaviour
 
 
     void Update()
-    {
+    {        
         if(agentAmount < 30)
         {
             spawnTimer = spawnTimer + Time.deltaTime;
@@ -30,8 +30,10 @@ public class SpawnControl : MonoBehaviour
 
         if(spawnTimer > spawnTimeRoll && !tiles[spawnPosRoll].GetComponent<Tile>().isOccupied)
         {
-            Instantiate(agentPrefab, tiles[spawnPosRoll].transform.position + new Vector3(0, 0.5f, 0f), Quaternion.identity);
+            newAgent = Instantiate(agentPrefab, tiles[spawnPosRoll].transform.position + new Vector3(0, 0.5f, 0f), Quaternion.identity);
+            newAgent.name = "Agent 00" + agentNumber.ToString();
             agentAmount = agentAmount + 1;
+            agentNumber = agentNumber + 1;
             spawnTimer = 0;
             spawnTimeRoll = Random.Range(3, 11);
             spawnPosRoll = Random.Range(0, tiles.Length);
