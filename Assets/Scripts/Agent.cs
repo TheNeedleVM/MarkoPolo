@@ -27,7 +27,7 @@ public class Agent : MonoBehaviour
             Destroy(gameObject, 0.15f);
         }
         if(isHit)
-        {
+        {            
             gameObject.GetComponent<Renderer>().material = materials[1];
             hitTimer = hitTimer + Time.deltaTime;
             if(hitTimer > 0.15f)
@@ -55,7 +55,6 @@ public class Agent : MonoBehaviour
 
     public void Movement()
     {
-
         if(isMoving)
         {
             transform.position = Vector3.Lerp(transform.position, endMove, 0.3f);
@@ -125,7 +124,7 @@ public class Agent : MonoBehaviour
         if(other.gameObject.tag == "Agent")
         {
             isHit = true;
-            hp = hp - 1;            
+            hp = hp - 1;           
         }
     }
 }

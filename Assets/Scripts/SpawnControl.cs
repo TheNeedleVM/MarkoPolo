@@ -12,7 +12,7 @@ public class SpawnControl : MonoBehaviour
     void Start()
     {
         tiles = GameObject.FindGameObjectsWithTag("Tile");
-        spawnTimeRoll = Random.Range(3, 11);
+        spawnTimeRoll = Random.Range(2, 11);
         spawnPosRoll = Random.Range(0, tiles.Length);
     }
 
