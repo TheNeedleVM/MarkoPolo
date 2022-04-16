@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3904317365148219884}
   - component: {fileID: 3904317365148219891}
   - component: {fileID: 3904317365148219887}
+  - component: {fileID: -790879253112304770}
   m_Layer: 0
   m_Name: Agent
   m_TagString: Agent
@@ -113,3 +114,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-790879253112304770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904317365148219890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61bc38d071e27944aa00800a82c2ae23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnControl: {fileID: 0}
+  materials:
+  - {fileID: 2100000, guid: 71482980a543b2e4abac34bcefce4dc7, type: 2}
+  - {fileID: 2100000, guid: 743f1949f6ed03744a9f729cd781d6a1, type: 2}
+  endMove: {x: 0, y: 0, z: 0}
+  moveDirection: 0
+  hp: 0
+  isMoving: 1

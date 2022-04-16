@@ -36,5 +36,5 @@ public class SpawnControl : MonoBehaviour
             spawnTimeRoll = Random.Range(3, 11);
             spawnPosRoll = Random.Range(0, tiles.Length);
         }
-    }
+    }    
 }
