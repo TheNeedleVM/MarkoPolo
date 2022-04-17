@@ -8,7 +8,7 @@ public class MarkoPolo : MonoBehaviour
     public GameObject showNumbers;
     public Text markoPolo;
     public string[] numbers;
-    void Start()
+    public void Start()
     {
         for(int i = 1; i < 101; i++)
         {

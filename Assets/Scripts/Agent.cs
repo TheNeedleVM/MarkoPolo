@@ -4,32 +4,38 @@ using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
-    public GameObject spawnControl;
-    public Material[] materials;
     public Vector3 endMove, hitMove;
+    public GameObject spawnControl;
+    public Material[] materials;    
     public int moveDirection, hp;
     public bool isMoving, isHit, isSelected;
     public float hitTimer, surviveTimer;
-    void Start()
+    public void Start()
     {
         endMove = transform.position;
         spawnControl = GameObject.FindGameObjectWithTag("SpawnControl");
         hp = 3;
     }
-
-
-    void Update()
+    public void Update()
     {
-        surviveTimer = surviveTimer + Time.deltaTime;
-        if(hp == 0)
+        surviveTimer += Time.deltaTime;
+        DestroyAgent();
+        ChangeMaterialOnHit();        
+    }
+    public void DestroyAgent()
+    {
+        if(hp <= 0)
         {
             spawnControl.GetComponent<SpawnControl>().agentAmount = spawnControl.GetComponent<SpawnControl>().agentAmount - 1;
             Destroy(gameObject);
         }
+    }
+    public void ChangeMaterialOnHit()
+    {
         if(isHit)
-        {            
+        {
             gameObject.GetComponent<Renderer>().material = materials[1];
-            hitTimer = hitTimer + Time.deltaTime;
+            hitTimer += Time.deltaTime;
             if(hitTimer > 0.15f)
             {
                 isHit = false;
@@ -48,7 +54,7 @@ public class Agent : MonoBehaviour
             hitTimer = 0f;
         }
     }
-    void FixedUpdate()
+    public void FixedUpdate()
     {
         if(!isHit)
         {
@@ -59,7 +65,6 @@ public class Agent : MonoBehaviour
             HitMove();
         }
     }
-
     public void Movement()
     {
         if(isMoving)
@@ -68,53 +73,7 @@ public class Agent : MonoBehaviour
         }
         else
         {
-            if(moveDirection == 0)
-            {
-                if(transform.position.x > 8)
-                {
-                    endMove = transform.position;
-                }
-                else
-                {
-                    endMove = transform.position + new Vector3(1, 0, 0);
-                }
-                
-            }
-            else if(moveDirection == 1)
-            {
-                if(transform.position.x < 1)
-                {
-                    endMove = transform.position;
-                }
-                else
-                {
-                    endMove = transform.position + new Vector3(-1, 0, 0);
-                }                
-            }
-            else if(moveDirection == 2)
-            {
-                if(transform.position.z > 8)
-                {
-                    endMove = transform.position;
-                }
-                else
-                {
-                    endMove = transform.position + new Vector3(0, 0, 1);
-                }
-                
-            }
-            else if(moveDirection == 3)
-            {
-                if (transform.position.z < 1)
-                {
-                    endMove = transform.position;
-                }
-                else
-                {
-                    endMove = transform.position + new Vector3(0, 0, -1);
-                }
-                
-            }
+            ChangeMoveDirection();
         }
         if(transform.position == endMove)
         {
@@ -126,16 +85,66 @@ public class Agent : MonoBehaviour
             isMoving = true;
         }
     }
+    public void ChangeMoveDirection()
+    {
+        if(moveDirection == 0)
+        {
+            if(transform.position.x > 8)
+            {
+                endMove = transform.position;
+            }
+            else
+            {
+                endMove = transform.position + new Vector3(1, 0, 0);
+            }
+
+        }
+        else if(moveDirection == 1)
+        {
+            if (transform.position.x < 1)
+            {
+                endMove = transform.position;
+            }
+            else
+            {
+                endMove = transform.position + new Vector3(-1, 0, 0);
+            }
+        }
+        else if(moveDirection == 2)
+        {
+            if(transform.position.z > 8)
+            {
+                endMove = transform.position;
+            }
+            else
+            {
+                endMove = transform.position + new Vector3(0, 0, 1);
+            }
+
+        }
+        else if(moveDirection == 3)
+        {
+            if (transform.position.z < 1)
+            {
+                endMove = transform.position;
+            }
+            else
+            {
+                endMove = transform.position + new Vector3(0, 0, -1);
+            }
+
+        }
+    }
     public void HitMove()
     {
         transform.position = Vector3.Lerp(transform.position, hitMove, 0.3f);
     }
-    void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Agent")
         {
             isHit = true;
-            hp = hp - 1;
+            hp -= 1;
             endMove = hitMove;
         }
         else if(other.gameObject.tag == "Hit")
