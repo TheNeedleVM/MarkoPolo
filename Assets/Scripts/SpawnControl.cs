@@ -6,8 +6,8 @@ public class SpawnControl : MonoBehaviour
 {
     public GameObject agentPrefab, newAgent, medkitPrefab, speedUpPrefab;
     public GameObject[] tiles;
-    public int spawnAgentTimeRoll, agentAmount, spawnAgentPosRoll, agentNumber, spawnMedkitTimeRoll, spawnMedkitPosRoll,
-        spawnSpeedUpTimeRoll, spawnSpeedUpPosRoll;
+    public int spawnAgentTimeRoll, spawnAgentTimeMin, spawnAgentTimeMax, agentAmount, spawnAgentPosRoll, agentNumber,
+        spawnMedkitTimeRoll, spawnMedkitPosRoll, spawnSpeedUpTimeRoll, spawnSpeedUpPosRoll;
     public float spawnAgentTimer, spawnMedkitTimer, spawnSpeedUpTimer;
     public void Start()
     {
@@ -48,7 +48,7 @@ public class SpawnControl : MonoBehaviour
                 newAgent.name = "Agent 00" + agentNumber.ToString();
                 agentAmount += +1;
                 spawnAgentTimer = 0;
-                spawnAgentTimeRoll = Random.Range(2, 11);
+                spawnAgentTimeRoll = Random.Range(spawnAgentTimeMin, spawnAgentTimeMax + 1);
             }            
         }
         else

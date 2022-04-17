@@ -4959,6 +4959,8 @@ MonoBehaviour:
   speedUpPrefab: {fileID: 3603498721386943799, guid: 70440020650657c4e96669e5a9e0a76f, type: 3}
   tiles: []
   spawnAgentTimeRoll: 0
+  spawnAgentTimeMin: 2
+  spawnAgentTimeMax: 10
   agentAmount: 0
   spawnAgentPosRoll: 0
   agentNumber: 0
