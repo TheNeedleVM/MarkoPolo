@@ -8,6 +8,8 @@ TagManager:
   - Agent
   - SpawnControl
   - Hit
+  - MedKit
+  - TopScore
   layers:
   - Default
   - TransparentFX

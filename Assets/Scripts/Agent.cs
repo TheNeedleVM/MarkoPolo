@@ -5,7 +5,7 @@ using UnityEngine;
 public class Agent : MonoBehaviour
 {
     public Vector3 endMove, hitMove;
-    public GameObject spawnControl;
+    public GameObject spawnControl, topScore;
     public Material[] materials;    
     public int moveDirection, hp;
     public bool isMoving, isHit, isSelected;
@@ -14,6 +14,7 @@ public class Agent : MonoBehaviour
     {
         endMove = transform.position;
         spawnControl = GameObject.FindGameObjectWithTag("SpawnControl");
+        topScore = GameObject.FindGameObjectWithTag("TopScore");
         hp = 3;
     }
     public void Update()
@@ -26,8 +27,17 @@ public class Agent : MonoBehaviour
     {
         if(hp <= 0)
         {
+            SaveTopScore();
             spawnControl.GetComponent<SpawnControl>().agentAmount = spawnControl.GetComponent<SpawnControl>().agentAmount - 1;
             Destroy(gameObject);
+        }
+    }
+    public void SaveTopScore()
+    {
+        if(surviveTimer > topScore.GetComponent<TopScore>().topScore)
+        {
+            topScore.GetComponent<TopScore>().topNameText.text = gameObject.name;
+            topScore.GetComponent<TopScore>().topScore = surviveTimer;
         }
     }
     public void ChangeMaterialOnHit()
@@ -153,6 +163,11 @@ public class Agent : MonoBehaviour
             {
                 hitMove = other.transform.position + new Vector3(0, 0.5f, 0);                
             }            
+        }
+        if(other.gameObject.tag == "MedKit")
+        {
+            hp += 1;
+            Destroy(other.gameObject);
         }
     }
 }
