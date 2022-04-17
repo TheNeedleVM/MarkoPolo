@@ -6,7 +6,7 @@ public class SpawnControl : MonoBehaviour
 {
     public GameObject agentPrefab, newAgent, medkitPrefab, speedUpPrefab;
     public GameObject[] tiles;
-    public int spawnAgentTimeRoll, spawnAgentTimeMin, spawnAgentTimeMax, agentAmount, spawnAgentPosRoll, agentNumber,
+    public int spawnAgentTimeRoll, spawnAgentTimeMin, spawnAgentTimeMax, agentAmount, agentAmountMax, spawnAgentPosRoll, agentNumber,
         spawnMedkitTimeRoll, spawnMedkitPosRoll, spawnSpeedUpTimeRoll, spawnSpeedUpPosRoll;
     public float spawnAgentTimer, spawnMedkitTimer, spawnSpeedUpTimer;
     public void Start()
@@ -26,7 +26,7 @@ public class SpawnControl : MonoBehaviour
     }
     public void SpawnTime()
     {
-        if(agentAmount < 30)
+        if(agentAmount < agentAmountMax)
         {
             spawnAgentTimer += Time.deltaTime;
         }
