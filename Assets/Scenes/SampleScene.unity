@@ -5464,7 +5464,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -340, y: -431}
+  m_AnchoredPosition: {x: -372, y: -431}
   m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1313735817
@@ -6396,7 +6396,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 412, y: -431}
+  m_AnchoredPosition: {x: 445, y: -431}
   m_SizeDelta: {x: 200, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1622790457
@@ -7406,7 +7406,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 60.999996, y: -431}
-  m_SizeDelta: {x: 500, y: 80}
+  m_SizeDelta: {x: 570, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2019517476
 MonoBehaviour:
@@ -7441,7 +7441,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Survived for : 11 sec.'
+  m_Text: 'Survived for : 110,0 sec.'
 --- !u!222 &2019517477
 CanvasRenderer:
   m_ObjectHideFlags: 0

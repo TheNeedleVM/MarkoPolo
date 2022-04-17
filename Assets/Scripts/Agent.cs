@@ -6,7 +6,7 @@ public class Agent : MonoBehaviour
 {
     public GameObject spawnControl;
     public Material[] materials;
-    public Vector3 endMove;
+    public Vector3 endMove, hitMove;
     public int moveDirection, hp;
     public bool isMoving, isHit, isSelected;
     public float hitTimer, surviveTimer;
@@ -24,7 +24,7 @@ public class Agent : MonoBehaviour
         if(hp == 0)
         {
             spawnControl.GetComponent<SpawnControl>().agentAmount = spawnControl.GetComponent<SpawnControl>().agentAmount - 1;
-            Destroy(gameObject, 0.15f);
+            Destroy(gameObject);
         }
         if(isHit)
         {            
@@ -50,7 +50,14 @@ public class Agent : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Movement();
+        if(!isHit)
+        {
+            Movement();
+        }
+        else
+        {
+            HitMove();
+        }
     }
 
     public void Movement()
@@ -119,12 +126,24 @@ public class Agent : MonoBehaviour
             isMoving = true;
         }
     }
+    public void HitMove()
+    {
+        transform.position = Vector3.Lerp(transform.position, hitMove, 0.3f);
+    }
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Agent")
         {
             isHit = true;
-            hp = hp - 1;           
+            hp = hp - 1;
+            endMove = hitMove;
+        }
+        else if(other.gameObject.tag == "Hit")
+        {
+            if(!isHit)
+            {
+                hitMove = other.transform.position + new Vector3(0, 0.5f, 0);                
+            }            
         }
     }
 }
