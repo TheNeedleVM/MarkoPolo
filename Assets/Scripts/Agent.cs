@@ -148,7 +148,7 @@ public class Agent : MonoBehaviour
     }
     public void HitMove()
     {
-        transform.position = Vector3.Lerp(transform.position, hitMove, 0.3f);
+        transform.position = Vector3.Lerp(transform.position, hitMove, movementSpeed);
     }
     public void OnTriggerEnter(Collider other)
     {
