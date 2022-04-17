@@ -39,14 +39,20 @@ public class SpawnControl : MonoBehaviour
     }
     public void SpawnAgent()
     {
-        if(spawnAgentTimer > spawnAgentTimeRoll && !tiles[spawnAgentPosRoll].GetComponent<Tile>().isOccupied)
+        if(!tiles[spawnAgentPosRoll].GetComponent<Tile>().isOccupied)
         {
-            newAgent = Instantiate(agentPrefab, tiles[spawnAgentPosRoll].transform.position + new Vector3(0, 0.5f, 0f), Quaternion.identity);
-            agentNumber += 1;
-            newAgent.name = "Agent 00" + agentNumber.ToString();
-            agentAmount += + 1;
-            spawnAgentTimer = 0;
-            spawnAgentTimeRoll = Random.Range(2, 11);
+            if(spawnAgentTimer > spawnAgentTimeRoll)
+            {
+                newAgent = Instantiate(agentPrefab, tiles[spawnAgentPosRoll].transform.position + new Vector3(0, 0.5f, 0f), Quaternion.identity);
+                agentNumber += 1;
+                newAgent.name = "Agent 00" + agentNumber.ToString();
+                agentAmount += +1;
+                spawnAgentTimer = 0;
+                spawnAgentTimeRoll = Random.Range(2, 11);
+            }            
+        }
+        else
+        {
             spawnAgentPosRoll = Random.Range(0, tiles.Length);
         }
     }
