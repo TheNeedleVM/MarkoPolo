@@ -10,6 +10,7 @@ TagManager:
   - Hit
   - MedKit
   - TopScore
+  - SpeedUp
   layers:
   - Default
   - TransparentFX

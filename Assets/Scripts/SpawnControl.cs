@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class SpawnControl : MonoBehaviour
 {
-    public GameObject agentPrefab, newAgent, medkitPrefab;
+    public GameObject agentPrefab, newAgent, medkitPrefab, speedUpPrefab;
     public GameObject[] tiles;
-    public int spawnAgentTimeRoll, agentAmount, spawnAgentPosRoll, agentNumber, spawnMedkitTimeRoll, spawnMedkitPosRoll;
-    public float spawnAgentTimer, spawnMedkitTimer;
+    public int spawnAgentTimeRoll, agentAmount, spawnAgentPosRoll, agentNumber, spawnMedkitTimeRoll, spawnMedkitPosRoll,
+        spawnSpeedUpTimeRoll, spawnSpeedUpPosRoll;
+    public float spawnAgentTimer, spawnMedkitTimer, spawnSpeedUpTimer;
     public void Start()
     {
         tiles = GameObject.FindGameObjectsWithTag("Tile");
         spawnAgentTimeRoll = 1;
         spawnAgentPosRoll = Random.Range(0, tiles.Length);
         spawnMedkitPosRoll = Random.Range(0, tiles.Length);
+        spawnSpeedUpPosRoll = Random.Range(0, tiles.Length);
     }
     public void Update()
     {
         SpawnTime();
         SpawnAgent();
         SpawnMedKit();
+        SpawnSpeedUp();
     }
     public void SpawnTime()
     {
@@ -32,6 +35,7 @@ public class SpawnControl : MonoBehaviour
             spawnAgentTimer = 0;
         }
         spawnMedkitTimer += Time.deltaTime;
+        spawnSpeedUpTimer += Time.deltaTime;
     }
     public void SpawnAgent()
     {
@@ -55,5 +59,15 @@ public class SpawnControl : MonoBehaviour
             spawnMedkitTimer = 0;
             spawnMedkitPosRoll = Random.Range(0, tiles.Length);
         }        
+    }
+    public void SpawnSpeedUp()
+    {
+        if(spawnSpeedUpTimer > spawnSpeedUpTimeRoll)
+        {
+            Instantiate(speedUpPrefab, tiles[spawnSpeedUpPosRoll].transform.position + new Vector3(0, 0.05f, 0f), Quaternion.identity);
+            spawnSpeedUpTimeRoll = Random.Range(8, 16);
+            spawnSpeedUpTimer = 0;
+            spawnSpeedUpPosRoll = Random.Range(0, tiles.Length);
+        }
     }
 }

@@ -4956,6 +4956,7 @@ MonoBehaviour:
   agentPrefab: {fileID: 3904317365148219890, guid: c9375e43e85d97f46bdfd210ab97ede6, type: 3}
   newAgent: {fileID: 0}
   medkitPrefab: {fileID: 4396301906772416935, guid: 8a9c16416666b2849b573f84b354c51e, type: 3}
+  speedUpPrefab: {fileID: 3603498721386943799, guid: 70440020650657c4e96669e5a9e0a76f, type: 3}
   tiles: []
   spawnAgentTimeRoll: 0
   agentAmount: 0
@@ -4963,8 +4964,11 @@ MonoBehaviour:
   agentNumber: 0
   spawnMedkitTimeRoll: 0
   spawnMedkitPosRoll: 0
+  spawnSpeedUpTimeRoll: 0
+  spawnSpeedUpPosRoll: 0
   spawnAgentTimer: 0
   spawnMedkitTimer: 0
+  spawnSpeedUpTimer: 0
 --- !u!1001 &1132465593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5620,7 +5624,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -134, y: -309}
-  m_SizeDelta: {x: 300, y: 100}
+  m_SizeDelta: {x: 360, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1265340452
 MonoBehaviour:

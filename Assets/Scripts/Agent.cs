@@ -9,9 +9,10 @@ public class Agent : MonoBehaviour
     public Material[] materials;    
     public int moveDirection, hp;
     public bool isMoving, isHit, isSelected;
-    public float hitTimer, surviveTimer;
+    public float hitTimer, surviveTimer, movementSpeed;
     public void Start()
     {
+        movementSpeed = 0.3f;
         endMove = transform.position;
         spawnControl = GameObject.FindGameObjectWithTag("SpawnControl");
         topScore = GameObject.FindGameObjectWithTag("TopScore");
@@ -79,7 +80,7 @@ public class Agent : MonoBehaviour
     {
         if(isMoving)
         {
-            transform.position = Vector3.Lerp(transform.position, endMove, 0.3f);
+            transform.position = Vector3.Lerp(transform.position, endMove, movementSpeed);
         }
         else
         {
@@ -167,6 +168,11 @@ public class Agent : MonoBehaviour
         if(other.gameObject.tag == "MedKit")
         {
             hp += 1;
+            Destroy(other.gameObject);
+        }
+        if(other.gameObject.tag == "SpeedUp")
+        {
+            movementSpeed += 0.1f;
             Destroy(other.gameObject);
         }
     }
